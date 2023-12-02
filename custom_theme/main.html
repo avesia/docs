@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    {%- for path in config.extra_css %}
+      <link href="{{ path | url }}" rel="stylesheet">
+    {%- endfor %}
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://storage.avesia.org/avesia-org-header.js"></script>
+    <script>var base_url = {{ base_url|tojson }};</script>
+  </head>
+  <body>
+    <avesia-org-header
+        productLogoSrc="https://storage.avesia.org/avsdocs.svg"
+        items='{"links": [
+            {
+                "name": "avesia By Examples",
+                "url": "by-examples"
+            }
+        ], "featuredLinks": [
+            {
+                "name": "Edit on GitHub",
+                "url": "https://github.com/avesia/docs"
+            }
+        ]}'
+    ></avesia-org-header>
+
+    <form>
+        <input placeholder="search here" name="q" id="mkdocs-search-query" type="text" >
+    </form>
+
+    <div id="mkdocs-search-results">
+    </div>
+
+    <hr />
+
+    <main>
+        <div id="toc">
+            <h2>Table of Content</h2>
+            <ul>
+                {% for toc_item in page.toc %}
+                    <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                    {% for toc_item in toc_item.children %}
+                        <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {{ page.content }}
+    </main>
+
+    {%- for script in config.extra_javascript %}
+      {{ script | script_tag }}
+    {%- endfor %}
+  </body>
+</html>

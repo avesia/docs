@@ -1,0 +1,29 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #222222;
+    color: #ddd;
+}
+
+a {
+    color: #ddd;
+}
+
+main {
+    max-width: 980px;
+    margin: auto;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    max-width: 50%;
+}
